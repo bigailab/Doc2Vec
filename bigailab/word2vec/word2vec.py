@@ -8,7 +8,7 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 readFilePath = '/home/ozgecan/beyazperde.com/usercomments/clean'
 writeFilePath = '/home/ozgecan/Desktop/usercomments_model.txt'
 saveModelStatus = True
-loadModelFilePath = '/home/ozgecan/Desktop/usercomments_model3.txt'
+loadModelFilePath = '/home/ozgecan/Desktop/usercomments_model.txt'
 
 #dosyayı  okumaya  sağlayan kısım
 class MySentences(object):
@@ -38,7 +38,7 @@ class Training(object):
 #Oluşturulan model dosyasının yüklenmesini sağlayan method
 class LoadModelFile(object):
     if loadModelFilePath :
-        model = gensim.models.Word2Vec.load_word2vec_format(loadModelFilePath, mmap='r')
+        model = gensim.models.Word2Vec.load(loadModelFilePath)
         print('################################################################')
         print('Similarity between iyi and güzel:')
         print(model.similarity('iyi', 'güzel'))
@@ -48,7 +48,7 @@ class LoadModelFile(object):
 class Test():
     sentences = MySentences(readFilePath)
     Training(sentences).training()
-
+    LoadModelFile()
 Test()
 
 
